@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockerize-me-web-app-svc
+  namespace: dockerize-me
+spec:
+  selector:
+    app: dockerize-me-web-app
+  ports:
+    - protocol: TCP
+      port: 80 # Port exposed by the service
+      targetPort: http # Port name exposed by the container
+  type: NodePort

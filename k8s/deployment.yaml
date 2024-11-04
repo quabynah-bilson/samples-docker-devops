@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockerize-me-web-app
+  namespace: dockerize-me
+  labels:
+    app: dockerize-me-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockerize-me-web-app
+  template:
+    metadata:
+      name: dockerize-me-web-app
+      labels:
+        app: dockerize-me-web-app
+    spec:
+      containers:
+        - name: dockerize-me-web-app
+          image: qcodelabsllc/dockerize-me:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080 # Port exposed by the container
+              protocol: TCP
+              name: http # Port name exposed by the container
+      restartPolicy: Always
